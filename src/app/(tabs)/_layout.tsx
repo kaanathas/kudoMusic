@@ -1,7 +1,8 @@
 import { Tabs } from "expo-router";
 import { colors, fontSize } from "../../constants/tokens";
 import { BlurView } from "expo-blur";
-import { View , Text ,StyleSheet} from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { FontAwesome, FontAwesome6, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 const TabsNavigation = () => {
   return (
     <Tabs
@@ -12,25 +13,62 @@ const TabsNavigation = () => {
           fontWeight: "500",
         },
         tabBarStyle: {
-            position: 'absolute',
-            borderTopLeftRadius:29,
-            borderTopRightRadius:20,
-            borderTopWidth:0,
-            paddingTop:8
+          position: "absolute",
+          borderTopLeftRadius: 29,
+          borderTopRightRadius: 20,
+          borderTopWidth: 0,
+          paddingTop: 8,
         },
         headerShown: false,
-        tabBarBackground: () => <BlurView intensity={95} style={{
-            ...StyleSheet.absoluteFillObject,
-            overflow:"hidden",
-            borderTopLeftRadius:20,
-            borderTopRightRadius:20
-        }} />,
+        tabBarBackground: () => (
+          <BlurView
+            intensity={95}
+            style={{
+              ...StyleSheet.absoluteFillObject,
+              overflow: "hidden",
+              borderTopLeftRadius: 20,
+              borderTopRightRadius: 20,
+            }}
+          />
+        ),
       }}
     >
-      <Tabs.Screen name="favorites" />
-      <Tabs.Screen name="playlists" />
-      <Tabs.Screen name="(songs)" />
-      <Tabs.Screen name="artists" />
+      <Tabs.Screen
+        name="favorites"
+        options={{
+          title: "Favorites",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="heart" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="playlists"
+        options={{
+          title: "Playlists",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="playlist-play" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="(songs)"
+        options={{
+          title: "Songs",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="musical-notes-sharp" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="artists"
+        options={{
+          title: "Artists",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome6 name="users-line" size={20} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 };
